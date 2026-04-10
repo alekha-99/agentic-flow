@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test-cli:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Build templates
+        run: npm run build
+      - name: Test CLI (dry run)
+        run: node bin/cli.js --dry-run
+      - name: Test CLI (install to temp)
+        run: |
+          mkdir /tmp/test-project
+          node bin/cli.js /tmp/test-project
+          ls -la /tmp/test-project/CLAUDE.md
+          ls -la /tmp/test-project/.claude/agents/orchestrator.md
+          ls -la /tmp/test-project/.github/copilot-instructions.md
+      - name: Test profiles
+        run: |
+          mkdir /tmp/test-claude && node bin/cli.js --claude /tmp/test-claude
+          test -d /tmp/test-claude/.claude/agents
+          test ! -d /tmp/test-claude/.github/agents
+
+          mkdir /tmp/test-copilot && node bin/cli.js --copilot /tmp/test-copilot
+          test -d /tmp/test-copilot/.github/agents
+          test ! -d /tmp/test-copilot/.claude/agents
+
+          mkdir /tmp/test-minimal && node bin/cli.js --minimal /tmp/test-minimal
+          test -f /tmp/test-minimal/CLAUDE.md
+          test -f /tmp/test-minimal/.claude/agents/orchestrator.md

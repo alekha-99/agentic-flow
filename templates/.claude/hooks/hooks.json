@@ -1,0 +1,82 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const fs=require('fs');const path=require('path');const f=process.env.TOOL_INPUT_FILE_PATH||'';const cwd=process.cwd();if(f&&path.resolve(f).startsWith(cwd+path.sep)&&fs.existsSync(f)){const c=fs.readFileSync(f,'utf8');const m=c.match(/console\\.log/g);if(m&&m.length>0){console.error('[Hook] Found '+m.length+' console.log statements. Remove before committing.');}}\"",
+            "description": "Warn about console.log statements in edited files"
+          }
+        ]
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"git push\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"console.error('[Hook] Pre-push check: Ensure all tests pass and code review is complete before pushing.');\"",
+            "description": "Remind to verify before git push"
+          }
+        ]
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"git commit\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/security-scan/scan.js",
+            "description": "Run security scan before commit — blocks on CRITICAL findings"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const f=process.env.TOOL_INPUT_FILE_PATH||'';if(f){console.log('[Hook] TypeScript file edited. Run type check after edits.');}\"",
+            "description": "Remind to type-check after TypeScript edits"
+          }
+        ]
+      },
+      {
+        "matcher": "tool == \"Write\" && tool_input.file_path matches \"\\\\.(test|spec)\\\\.(ts|tsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"console.log('[Hook] Test file created. Remember to run: npm test');\"",
+            "description": "Remind to run tests after creating test files"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "true",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/memory-persistence/session-end.js",
+            "description": "Extract session patterns and save memory on session end"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "true",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/memory-persistence/session-start.js",
+            "description": "Load memory files and check for incomplete tasks"
+          }
+        ]
+      }
+    ]
+  }
+}

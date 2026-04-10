@@ -1,0 +1,5 @@
+# Exclude from npm package — keep it lean
+.claude/
+.github/
+.gitignore
+.mcp.json

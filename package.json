@@ -1,0 +1,42 @@
+{
+  "name": "agentic-flow",
+  "version": "1.0.0",
+  "description": "One-command AI development harness — agents, skills, hooks, rules for Claude Code, GitHub Copilot, Cursor, and Codex",
+  "bin": {
+    "agentic-flow": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "node bin/build-templates.js",
+    "test": "node bin/cli.js --dry-run",
+    "prepublishOnly": "node bin/build-templates.js && node bin/cli.js --dry-run"
+  },
+  "keywords": [
+    "ai",
+    "claude",
+    "copilot",
+    "cursor",
+    "codex",
+    "agents",
+    "mcp",
+    "development",
+    "testing",
+    "tdd",
+    "playwright",
+    "react",
+    "nextjs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "templates/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alekha-99/agentic-flow.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
