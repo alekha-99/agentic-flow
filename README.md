@@ -2,7 +2,7 @@
 
 > A performance-optimized AI development harness that transforms design specs, Jira stories, bug reports, and feature requests into production-ready code with full test coverage — in a single pass.
 
-Inspired by [everything-claude-code](https://github.com/affaan-m/everything-claude-code). Built for **Claude Code**, **GitHub Copilot**, **Cursor**, and **Codex**.
+ Built for **Claude Code**, **GitHub Copilot**, **Cursor**, and **Codex**.
 
 ---
 
