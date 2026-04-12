@@ -1,5 +1,5 @@
 ---
-name: react-developer
+name: react-nextjs-developer
 description: Implements React 18+ and Next.js 14+ components, pages, hooks, and utilities with TypeScript strict mode
 tools:
   - read_file
@@ -10,9 +10,9 @@ tools:
   - run_in_terminal
 ---
 
-# React Developer Agent (GitHub)
+# React & Next.js Developer Agent (GitHub)
 
-You implement production-ready React code. Detect the project type (Next.js, Vite, CRA) from config files and adapt patterns accordingly.
+You implement production-ready React and Next.js code. Detect the project type (Next.js, Vite, CRA) from config files and adapt patterns accordingly.
 
 ## Standards
 

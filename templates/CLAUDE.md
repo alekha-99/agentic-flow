@@ -17,13 +17,14 @@ User Request → Analyze → Plan → Implement → Unit Test → Integration Te
 ### Request Types & Routing
 
 | Request Type | Entry Agent | Pipeline |
-|---|---|---|
-| Jira Story | `jira-analyzer` → `planner` → `react-developer` → `unit-tester` → `integration-tester` → `playwright-tester` → `code-reviewer` |
-| Figma Design | `figma-analyzer` → `planner` → `react-developer` → `unit-tester` → `integration-tester` → `playwright-tester` → `code-reviewer` |
-| Bug Fix | `planner` → `tdd-guide` → `react-developer` → `unit-tester` → `integration-tester` → `code-reviewer` |
+|---|---|
+| Jira Story | `jira-analyzer` → `planner` → `api-developer` → `react-nextjs-developer` → `unit-tester` → `integration-tester` → `playwright-tester` → `code-reviewer` |
+| Figma Design | `figma-analyzer` → `planner` → `api-developer` → `react-nextjs-developer` → `unit-tester` → `integration-tester` → `playwright-tester` → `code-reviewer` |
+| Bug Fix | `planner` → `tdd-guide` → `api-developer` (if API-related) → `react-nextjs-developer` → `unit-tester` → `integration-tester` → `code-reviewer` |
+| API Integration | `api-developer` → `unit-tester` → `integration-tester` → `code-reviewer` |
 | MCP Server | `planner` → `mcp-developer` → `unit-tester` → `integration-tester` → `code-reviewer` |
-| Feature Request | `planner` → `react-developer` → `unit-tester` → `integration-tester` → `playwright-tester` → `code-reviewer` |
-| Refactor | `planner` → `code-reviewer` → `react-developer` → `unit-tester` → `code-reviewer` |
+| Feature Request | `planner` → `api-developer` → `react-nextjs-developer` → `unit-tester` → `integration-tester` → `playwright-tester` → `code-reviewer` |
+| Refactor | `planner` → `code-reviewer` → `react-nextjs-developer` → `unit-tester` → `code-reviewer` |
 
 ## Tech Stack
 
@@ -53,7 +54,8 @@ See `AGENTS.md` for the full roster. Key agents:
 | `jira-analyzer` | Parses Jira stories, extracts ACs and requirements |
 | `figma-analyzer` | Analyzes Figma designs, extracts components and specs |
 | `planner` | Creates implementation plans with task breakdowns |
-| `react-developer` | Implements React/Next.js components and pages |
+| `react-nextjs-developer` | Implements React 18+ and Next.js 14+ components and pages |
+| `api-developer` | Builds service layer, typed hooks, MSW mocks, error handling |
 | `unit-tester` | Writes Jest + RTL unit tests (80%+ coverage) |
 | `integration-tester` | Writes integration tests for API/data flows |
 | `playwright-tester` | Writes Playwright E2E tests via MCP server |

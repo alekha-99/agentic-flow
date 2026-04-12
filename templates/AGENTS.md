@@ -65,12 +65,19 @@
 **Model**: sonnet
 **When to use**: Before any implementation. Creates phased plan with dependencies, risks, and estimates.
 
-### react-developer
+### react-nextjs-developer
 
-**Role**: Implement React 18+ components and pages (standalone Vite/CRA or Next.js)
+**Role**: Implement React 18+ and Next.js 14+ components and pages (standalone Vite/CRA or Next.js App Router)
 **Tools**: Read, Write, Edit, Grep, Glob, Bash
 **Model**: sonnet
-**When to use**: When building UI components, pages, layouts, or client-side logic. Detects project type from config files.
+**When to use**: When building UI components, pages, layouts, or client-side logic. Handles both standalone React (Vite/CRA) and Next.js (App Router, Server Components, data fetching). Detects project type from config files. Consumes hooks produced by `api-developer` — never calls APIs directly.
+
+### api-developer
+
+**Role**: Build the complete API integration layer — TypeScript types, service functions, TanStack Query hooks, auth interceptors, error handling, and MSW mock handlers
+**Tools**: Read, Write, Edit, Grep, Glob, Bash
+**Model**: sonnet
+**When to use**: Whenever a feature requires data from an API. Runs before `react-nextjs-developer` in every pipeline that involves data fetching. Also used standalone via `/api` command to integrate a single endpoint.
 
 ### mcp-developer
 
@@ -157,7 +164,8 @@
 orchestrator
   → jira-analyzer OR figma-analyzer (based on input)
   → planner
-  → react-developer (parallel: components + pages)
+  → api-developer (types + service + hooks + MSW mocks)
+  → react-nextjs-developer (parallel: components + pages)
   → unit-tester
   → integration-tester
   → playwright-tester
@@ -166,13 +174,24 @@ orchestrator
   → doc-updater
 ```
 
+### API-Only Pipeline (`/api`)
+
+```
+orchestrator
+  → api-developer (types + service + hooks + MSW mocks)
+  → unit-tester (service tests)
+  → integration-tester (hook tests)
+  → typescript-reviewer
+```
+
 ### Bug Fix Pipeline
 
 ```
 orchestrator
   → planner (root cause analysis)
   → tdd-guide (failing test first)
-  → react-developer (minimal fix)
+  → api-developer (if API-related — fix service/hook/mock)
+  → react-nextjs-developer (minimal fix)
   → unit-tester (verify fix + regression tests)
   → integration-tester
   → code-reviewer
@@ -184,7 +203,8 @@ orchestrator
 orchestrator
   → figma-analyzer (extract specs)
   → planner (component breakdown)
-  → react-developer (implement components)
+  → api-developer (service layer if data-driven)
+  → react-nextjs-developer (implement components)
   → unit-tester (component tests)
   → playwright-tester (visual flow tests)
   → code-reviewer

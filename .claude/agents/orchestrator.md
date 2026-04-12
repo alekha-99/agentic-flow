@@ -19,11 +19,12 @@ Analyze the user's input and classify it as one of:
 
 | Type | Indicators | Pipeline |
 |---|---|---|
-| `jira-story` | Jira URL, ticket ID, acceptance criteria, user story format | Jira → Plan → Implement → Test → Review |
-| `figma-design` | Figma URL, design screenshot, component specs, UI mockup | Figma → Plan → Implement → Test → Review |
+| `jira-story` | Jira URL, ticket ID, acceptance criteria, user story format | Jira → Plan → API → Implement → Test → Review |
+| `figma-design` | Figma URL, design screenshot, component specs, UI mockup | Figma → Plan → API → Implement → Test → Review |
 | `bug-fix` | Error message, stack trace, "fix", "broken", regression | Plan → TDD → Fix → Test → Review |
+| `api-integration` | "add endpoint", "integrate API", "service layer", "hook for", "fetch data" | API Dev → Test → Review |
 | `mcp-server` | MCP tool, protocol, server, handler | Plan → MCP Dev → Test → Review |
-| `feature` | New feature, enhancement, "add", "implement" | Plan → Implement → Test → Review |
+| `feature` | New feature, enhancement, "add", "implement" | Plan → API → Implement → Test → Review |
 | `refactor` | Refactor, cleanup, optimize, simplify | Plan → Review → Implement → Test → Review |
 
 ## Execution Protocol
@@ -38,12 +39,13 @@ Use TodoWrite to create a detailed task breakdown:
 ```
 1. [ANALYZE] Extract requirements and acceptance criteria
 2. [PLAN] Design component architecture and data flow
-3. [IMPLEMENT] Build components, hooks, utilities, and pages
-4. [UNIT-TEST] Write Jest + RTL tests (80%+ coverage)
-5. [INTEGRATION-TEST] Write API/service integration tests
-6. [E2E-TEST] Write Playwright tests for critical flows
-7. [REVIEW] Code quality, security, and accessibility audit
-8. [DOCUMENT] Update relevant documentation
+3. [API] Build service layer — types, service, hooks, MSW mocks
+4. [IMPLEMENT] Build components, hooks, utilities, and pages
+5. [UNIT-TEST] Write Jest + RTL tests (80%+ coverage)
+6. [INTEGRATION-TEST] Write API/service integration tests
+7. [E2E-TEST] Write Playwright tests for critical flows
+8. [REVIEW] Code quality, security, and accessibility audit
+9. [DOCUMENT] Update relevant documentation
 ```
 
 ### Step 3: Dispatch Sub-Agents

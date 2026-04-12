@@ -100,12 +100,12 @@ The **orchestrator** classifies each request and routes it through the correct p
 
 | Request Type | Pipeline |
 |---|---|
-| Jira Story | jira-analyzer → planner → react-developer → unit-tester → integration-tester → playwright-tester → code-reviewer |
-| Figma Design | figma-analyzer → planner → react-developer → unit-tester → integration-tester → playwright-tester → code-reviewer |
-| Bug Fix | planner → tdd-guide → react-developer → unit-tester → integration-tester → code-reviewer |
-| Feature | planner → react-developer → unit-tester → integration-tester → playwright-tester → code-reviewer |
+| Jira Story | jira-analyzer → planner → react-nextjs-developer → unit-tester → integration-tester → playwright-tester → code-reviewer |
+| Figma Design | figma-analyzer → planner → react-nextjs-developer → unit-tester → integration-tester → playwright-tester → code-reviewer |
+| Bug Fix | planner → tdd-guide → react-nextjs-developer → unit-tester → integration-tester → code-reviewer |
+| Feature | planner → react-nextjs-developer → unit-tester → integration-tester → playwright-tester → code-reviewer |
 | MCP Server | planner → mcp-developer → unit-tester → integration-tester → code-reviewer |
-| Refactor | planner → code-reviewer → react-developer → unit-tester → code-reviewer |
+| Refactor | planner → code-reviewer → react-nextjs-developer → unit-tester → code-reviewer |
 
 ---
 
@@ -125,7 +125,7 @@ Agentic-flow/
 │   │   ├── jira-analyzer.md        #   Jira story parser
 │   │   ├── figma-analyzer.md       #   Design spec extractor
 │   │   ├── planner.md              #   Implementation planner
-│   │   ├── react-developer.md      #   React/Next.js developer
+│   │   ├── react-developer.md      #   React 18+ / Next.js 14+ developer
 │   │   ├── unit-tester.md          #   Jest + RTL unit tests
 │   │   ├── integration-tester.md   #   MSW integration tests
 │   │   ├── playwright-tester.md    #   Playwright E2E tests
@@ -237,7 +237,7 @@ Agentic-flow/
 - **planner** — Implementation planning with risk assessment
 
 ### Build Phase
-- **react-developer** — React 18+ / Next.js 14+ component implementation
+- **react-nextjs-developer** — React 18+ / Next.js 14+ component implementation
 - **mcp-developer** — MCP server tool development
 - **build-resolver** — Build error diagnosis and fixing
 - **refactor-cleaner** — Dead code removal and cleanup

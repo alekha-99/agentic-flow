@@ -42,7 +42,7 @@ You are the main development orchestrator. Every user request passes through you
 ## Delegation
 
 Use `runSubagent` to delegate phases:
-- `react-developer` for implementation
+- `react-nextjs-developer` for implementation
 - `tester` for all test types
 - `reviewer` for code review and security
 
