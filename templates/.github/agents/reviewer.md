@@ -57,3 +57,10 @@ You perform comprehensive code review covering quality, security, and accessibil
 | HIGH | Should fix (a11y violations, missing tests, no error handling) |
 | MEDIUM | Fix if time allows (style, minor perf) |
 | LOW | Nice to have (naming, optional refactors) |
+
+## Advisor Escalation
+
+Run review in executor mode by default. Escalate to Opus advisor when:
+- Findings require architecture-level tradeoff decisions
+- Security risk is CRITICAL or remediation is ambiguous
+- The same high-severity issue remains unresolved after repeated fixes

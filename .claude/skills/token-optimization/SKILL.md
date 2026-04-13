@@ -16,10 +16,10 @@ applies_to: ["**/*"]
 |---|---|---|
 | Code generation | Sonnet | Best coding model, cost-effective |
 | Simple lookups, docs | Haiku | 3x cheaper, sufficient for simple tasks |
-| Architecture decisions | Opus | Deep reasoning needed |
+| Architecture decisions | Sonnet + Opus advisor | Escalate only when decision complexity is high |
 | Sub-agent workers | Haiku | Frequent invocation, lower cost |
-| Code review | Opus | Needs deep understanding |
-| Security review | Opus | Critical decisions |
+| Code review | Sonnet + Opus advisor | Keep default cost low, escalate hard tradeoffs |
+| Security review | Sonnet + Opus advisor | Escalate CRITICAL or ambiguous security risk |
 | Test generation | Sonnet | Needs coding + understanding |
 | Documentation | Haiku | Straightforward writing |
 
@@ -59,6 +59,7 @@ applies_to: ["**/*"]
 1. **Use `/clear` between unrelated tasks** — free, instant context reset
 2. **Use `/compact` at logical breakpoints** — reduces token usage
 3. **Use Haiku for sub-agents** — 3x cheaper for simple tasks
-4. **Limit thinking tokens** — 10k is enough for most coding tasks
-5. **Avoid Agent Teams for sequential work** — sub-agents are cheaper
-6. **Read specific line ranges** — don't read entire files when you need 10 lines
+4. **Use Opus as advisor only** — invoke on hard decisions, not full-task execution
+5. **Limit thinking tokens** — 10k is enough for most coding tasks
+6. **Avoid Agent Teams for sequential work** — sub-agents are cheaper
+7. **Read specific line ranges** — don't read entire files when you need 10 lines

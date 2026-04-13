@@ -2,9 +2,14 @@
 
 ## Model Selection
 
-- **Sonnet**: Default for all coding tasks
-- **Haiku**: Sub-agents, simple lookups, documentation
-- **Opus**: Architecture decisions, security reviews, complex debugging
+- **Sonnet (executor)**: Default for implementation, testing, and most reviews
+- **Haiku (executor)**: Lightweight analyzers, documentation, simple lookups
+- **Opus (advisor)**: Consult only for complex architectural/security decisions
+
+Advisor strategy:
+- Executors run end-to-end
+- Escalate to Opus only on hard decision points
+- Resume execution with the original executor after advice
 
 ## Context Management
 

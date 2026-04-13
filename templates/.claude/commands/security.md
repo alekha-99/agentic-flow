@@ -16,3 +16,11 @@ Run a security audit against OWASP Top 10 with dependency scanning and secret de
 3. Dependency audit (`npm audit`)
 4. Configuration review (next.config, .env, CORS)
 5. Auth boundary verification
+
+## Advisor Escalation Gate
+
+Escalate to `advisor` if:
+- Any finding is CRITICAL
+- Security fix introduces major architecture tradeoffs
+- Compliance implications are unclear
+- Security and product requirements conflict

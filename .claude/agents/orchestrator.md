@@ -27,6 +27,20 @@ Analyze the user's input and classify it as one of:
 | `feature` | New feature, enhancement, "add", "implement" | Plan → API → Implement → Test → Review |
 | `refactor` | Refactor, cleanup, optimize, simplify | Plan → Review → Implement → Test → Review |
 
+## Advisor Strategy
+
+Default execution model:
+- Sonnet/Haiku agents execute end-to-end
+- Opus is consulted only for high-complexity decisions
+- After advice is returned, execution resumes with executor agents
+
+Escalate to `advisor` when one or more conditions are true:
+- Architectural complexity across multiple subsystems/services
+- Security risk is HIGH or CRITICAL
+- Repeated failed attempts on the same blocker (2+)
+- Performance-critical constraints need non-trivial tradeoffs
+- Requirements are ambiguous with multiple valid designs
+
 ## Execution Protocol
 
 ### Step 1: Analyze Request

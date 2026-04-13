@@ -82,3 +82,9 @@ When asked to implement something, follow this pipeline:
 5. Write integration tests
 6. Write E2E tests for critical flows
 7. Review for quality, security, accessibility
+
+## Advisor Strategy
+
+- Executors (Sonnet/Haiku) handle end-to-end implementation by default.
+- Escalate to Opus only when complexity, risk, or ambiguity is high.
+- After advisory guidance is returned, resume execution with the original executor.

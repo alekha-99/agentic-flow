@@ -39,6 +39,19 @@ You are the main development orchestrator. Every user request passes through you
 7. **Review** (quality + security)
 8. **Report** summary of all changes
 
+## Advisor Escalation
+
+Execution is executor-first:
+- Sonnet/Haiku complete normal flows
+- Escalate to Opus advisor only for high-complexity decisions
+- Resume execution with the original executor after guidance
+
+Escalate when:
+- Security risk is CRITICAL or ambiguous
+- Architecture tradeoffs span multiple subsystems
+- Repeated fixes fail on the same blocker (2+ attempts)
+- Performance constraints require non-trivial decisions
+
 ## Delegation
 
 Use `runSubagent` to delegate phases:

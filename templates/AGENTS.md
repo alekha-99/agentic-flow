@@ -41,8 +41,15 @@
 
 **Role**: Main coordinator and request router
 **Tools**: All tools — delegates to sub-agents
-**Model**: sonnet (default), opus for complex architecture
+**Model**: sonnet (default), escalates to advisor for complex decisions
 **When to use**: Every request starts here. The orchestrator classifies the request type and dispatches the correct pipeline.
+
+### advisor
+
+**Role**: Strategic advisor for complex decisions and escalations
+**Tools**: Read, Grep, Glob
+**Model**: opus (advisor-only)
+**When to use**: Invoked by executor agents when complexity, risk, or ambiguity exceeds normal thresholds. Provides guidance and returns control to the executor.
 
 ### jira-analyzer
 
@@ -118,14 +125,14 @@
 
 **Role**: Review code for quality, security, accessibility, and maintainability
 **Tools**: Read, Grep, Glob, Bash
-**Model**: opus
+**Model**: sonnet (escalates to advisor)
 **When to use**: After all implementation and tests are complete. Final quality gate.
 
 ### security-reviewer
 
 **Role**: OWASP Top 10 audit, dependency scanning, secret detection
 **Tools**: Read, Grep, Glob, Bash
-**Model**: opus
+**Model**: sonnet (escalates to advisor)
 **When to use**: Before any commit. Checks for vulnerabilities, exposed secrets, injection risks.
 
 ### build-resolver

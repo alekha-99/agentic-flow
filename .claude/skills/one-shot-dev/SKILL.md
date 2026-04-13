@@ -55,7 +55,7 @@ Execute the complete development pipeline with a single command. From analysis t
 3. Break down into ordered tasks with dependencies
 4. Identify reusable existing code
 
-### Phase 3: Build (react-developer / mcp-developer)
+### Phase 3: Build (react-nextjs-developer / mcp-developer)
 1. Create types and interfaces
 2. Implement components (atoms → molecules → organisms)
 3. Implement hooks and utilities
@@ -81,6 +81,16 @@ Report:
 - Test results and coverage
 - Security findings
 - Outstanding items (if any)
+
+## Advisor Checkpoints
+
+Executors (Sonnet/Haiku) should escalate to `advisor` when:
+- Architecture decisions have multiple valid tradeoffs
+- Security risk is HIGH or CRITICAL
+- Performance targets require specialized algorithm choices
+- The same blocker persists after 2 failed attempts
+
+After advisor guidance, return execution to the original executor agent.
 
 ## Quality Gates
 

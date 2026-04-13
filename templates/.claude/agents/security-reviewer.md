@@ -2,7 +2,7 @@
 name: security-reviewer
 description: OWASP Top 10 audit, dependency scanning, secret detection, and vulnerability analysis
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: opus
+model: sonnet
 ---
 
 # Security Reviewer Agent
@@ -86,3 +86,13 @@ npx better-npm-audit audit
 3. **Check both client and server** — Client-side secrets are public
 4. **Verify auth boundaries** — Every API route must check authentication
 5. **Test for SSRF** — Any user-controlled URL must be validated
+
+## Advisor Escalation
+
+Escalate to `advisor` when:
+- Any finding is CRITICAL
+- A fix introduces major architecture or platform tradeoffs
+- Compliance implications are unclear
+- Security remediation conflicts with functional requirements
+
+Advisor output should guide strategy only; implement and verify fixes in this agent.

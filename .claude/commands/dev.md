@@ -39,3 +39,14 @@ All must pass:
 - All tests pass with 80%+ coverage
 - No hardcoded secrets
 - WCAG 2.1 AA accessibility
+
+## Advisor Escalation Gate
+
+Escalate to `advisor` before continuing when any condition is met:
+- Architecture spans multiple services or cross-cutting concerns
+- Security risk is HIGH/CRITICAL or remediation is ambiguous
+- Same blocker persists after 2 failed attempts
+- Performance target requires non-trivial algorithm tradeoffs
+- Requirements are ambiguous with multiple valid implementations
+
+After guidance is returned, resume execution with executor agents.

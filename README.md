@@ -96,6 +96,11 @@ Open any `.prompt.md` file from `.github/prompts/` and invoke with `@workspace`:
 User Request → Orchestrator → Analyze → Plan → Build → Test → Review → Done
 ```
 
+Model routing uses an advisor strategy:
+- Executors: Sonnet/Haiku run tasks end-to-end
+- Advisor: Opus is consulted only for complex decisions
+- Control returns to the executor after advisor guidance
+
 The **orchestrator** classifies each request and routes it through the correct pipeline:
 
 | Request Type | Pipeline |

@@ -44,6 +44,15 @@ The **orchestrator** agent is the main entry point. It:
 3. Ensures each phase completes before moving to the next
 4. Collects results and presents a unified summary
 
+### Advisor Strategy
+
+Use Sonnet/Haiku as executors for end-to-end execution. Escalate to `advisor` (Opus) only when:
+- Architectural tradeoffs are complex
+- Security decisions are high risk or ambiguous
+- The same blocker persists after repeated attempts
+
+The advisor provides guidance only, then control returns to the original executor.
+
 ### Available Agents
 
 See `AGENTS.md` for the full roster. Key agents:
@@ -51,6 +60,7 @@ See `AGENTS.md` for the full roster. Key agents:
 | Agent | Purpose |
 |---|---|
 | `orchestrator` | Main coordinator — routes requests through the pipeline |
+| `advisor` | Strategic advisor for complex escalations (Opus advisory only) |
 | `jira-analyzer` | Parses Jira stories, extracts ACs and requirements |
 | `figma-analyzer` | Analyzes Figma designs, extracts components and specs |
 | `planner` | Creates implementation plans with task breakdowns |
@@ -78,6 +88,7 @@ Skills are the primary workflow surface. Invoke them directly or let the orchest
 - `integration-testing` — Integration test patterns
 - `security-scan` — Security audit and vulnerability scanning
 - `token-optimization` — Context and cost management
+- `advisor-strategy` — Executor-first routing with Opus escalation
 - `continuous-learning` — Session pattern extraction
 - `mcp-server-patterns` — MCP server development
 

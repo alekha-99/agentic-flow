@@ -17,3 +17,11 @@ Run a comprehensive code review on recent changes.
 4. **Accessibility**: WCAG 2.1 AA, ARIA, keyboard nav
 5. **Testing**: Coverage, edge cases, error scenarios
 6. **Performance**: Re-renders, bundle size, queries
+
+## Advisor Escalation Gate
+
+Escalate to `advisor` if:
+- Findings require architecture-level tradeoff decisions
+- A HIGH/CRITICAL issue has no clear low-risk fix
+- Remediation affects multiple subsystems with conflicting constraints
+- Repeated fixes fail to resolve the same high-severity issue
